@@ -1,0 +1,17 @@
+Title: Machine Guarding Inspection Procedure 44
+Document ID: OPS-044
+Classification: Internal
+Purpose: Define the approved process for machine guarding inspection.
+Scope: Applies to authorized maintenance personnel.
+Trigger: Follow this procedure when the relevant condition is observed.
+Step 1: Review the equipment status and relevant safety warnings.
+Step 2: Follow the approved lockout-tagout procedure when required.
+Step 3: Inspect the equipment using the approved checklist.
+Safety: Do not bypass alarms, interlocks, or thermal protection.
+Escalation: Report unresolved faults to the maintenance supervisor.
+Evidence: Record completed checks in the maintenance log.
+Prohibited action: Do not perform work outside your authorization level.
+Access: This document is for internal authorized users only.
+Review: The procedure must be reviewed after repeated incidents.
+Version: 1.0
+Status: Fictional training document for the Enterprise Agent project.
