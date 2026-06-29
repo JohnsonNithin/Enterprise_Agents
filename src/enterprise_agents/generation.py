@@ -5,9 +5,9 @@ from dotenv import load_dotenv
 from langchain_core.documents import Document
 from langchain_groq import ChatGroq
 
-from chunking import split_documents
-from ingestion import POLICIES_DIRECTORY, load_policy_documents
-from retrieval import build_retriever, retrieve_documents
+from src.enterprise_agents.chunking import split_documents
+from src.enterprise_agents.ingestion import POLICIES_DIRECTORY, load_policy_documents
+from src.enterprise_agents.retrieval import build_retriever, retrieve_documents
 
 
 def create_language_model() -> Any:

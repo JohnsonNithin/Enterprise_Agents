@@ -1,7 +1,7 @@
 from langchain_core.documents import Document
 
-from chunking import split_documents
-from ingestion import POLICIES_DIRECTORY, load_policy_documents
+from src.enterprise_agents.chunking import split_documents
+from src.enterprise_agents.ingestion import POLICIES_DIRECTORY, load_policy_documents
 from langchain_chroma import Chroma
 from langchain_core.vectorstores import VectorStoreRetriever
 from langchain_huggingface import HuggingFaceEmbeddings

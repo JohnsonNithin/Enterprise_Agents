@@ -1,7 +1,7 @@
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-from ingestion import POLICIES_DIRECTORY, load_policy_documents
+from src.enterprise_agents.ingestion import POLICIES_DIRECTORY, load_policy_documents
 
 
 CHUNK_SIZE = 400

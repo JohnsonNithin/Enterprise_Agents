@@ -3,7 +3,7 @@ from typing import Any
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from rag_service import answer_question, get_rag_pipeline
+from src.enterprise_agents.rag_service import answer_question, get_rag_pipeline
 
 
 app = FastAPI(title="Enterprise Maintenance AI Assistant")

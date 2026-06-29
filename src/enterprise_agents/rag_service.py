@@ -1,12 +1,122 @@
+"""
+`rag_service.py` is the **orchestrator**.
+
+It connects the separate pieces into one working flow.
+
+**Mental Model**
+
+Each file has one job:
+
+
+ingestion.py     -> load documents
+chunking.py      -> split documents
+retrieval.py     -> find relevant chunks
+generation.py    -> create answer using LLM
+guardrails.py    -> decide risk/refusal/human review
+evaluation.py    -> test the whole system
+```
+
+`rag_service.py` connects them:
+
+
+question
+    ↓
+guardrails
+    ↓
+retrieval
+    ↓
+generation
+    ↓
+guardrails warning
+    ↓
+final response
+
+
+**Why `rag_service.py` Exists**
+
+Without `rag_service.py`, FastAPI would need to call everything manually:
+
+
+load docs
+chunk docs
+build retriever
+retrieve chunks
+generate answer
+apply guardrails
+format response
+
+
+That would make `api.py` messy.
+
+So we keep:
+
+
+api.py = thin API layer
+rag_service.py = business logic / orchestration layer
+
+
+**What `rag_service.py` Should Do**
+
+It should do only the connected flow:
+
+
+1. Receive user question
+2. Check guardrails
+3. If refused, return refusal response
+4. Get RAG pipeline
+5. Retrieve evidence
+6. Generate answer
+7. Add warning if high risk
+8. Extract sources
+9. Return structured response
+
+
+**What `rag_service.py` Should Not Do**
+
+It should not contain all low-level logic.
+
+Avoid putting these inside `rag_service.py`:
+
+
+document loading logic
+chunking logic
+embedding logic details
+keyword lists
+FastAPI route definitions
+Streamlit UI code
+evaluation test loops
+
+
+Those belong in separate files.
+
+**Crux**
+
+rag_service.py = the conductor.
+Other files = the instruments.
+
+
+In industry wording:
+
+
+rag_service.py is the application service layer that orchestrates guardrails, retrieval, generation, and response formatting.
+
+"""
+
+
+
+
+
+
+
 from dataclasses import dataclass
 from typing import Any
 
 from langchain_core.documents import Document
 
-from chunking import split_documents
-from generation import answer_with_citations, create_language_model
-from ingestion import POLICIES_DIRECTORY, load_policy_documents
-from retrieval import build_retriever, retrieve_documents
+from src.enterprise_agents.chunking import split_documents
+from src.enterprise_agents.generation import answer_with_citations, create_language_model
+from src.enterprise_agents.ingestion import POLICIES_DIRECTORY, load_policy_documents
+from src.enterprise_agents.retrieval import build_retriever, retrieve_documents
 
 
 @dataclass(frozen=True)
